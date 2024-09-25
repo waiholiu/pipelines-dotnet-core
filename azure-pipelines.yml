@@ -43,3 +43,22 @@ stages:
         PathtoPublish: '$(build.artifactstagingdirectory)'
         ArtifactName: 'drop'
     condition: succeededOrFailed()
+- stage: DeploytoProd
+  jobs:
+  - job: Deploy
+    pool:      
+        name: default
+    steps:
+    - task: DownloadBuildArtifacts@1
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'drop'
+        downloadPath: '$(System.ArtifactsDirectory)'
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'MIPDG--lod49466407(ef3e1b06-c3be-46c3-95dd-3e20738072e2)'
+        appType: 'webApp'
+        WebAppName: 'pul-yaml-44234366'
+        packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'
