@@ -4,8 +4,8 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: ubuntu-latest
-
+  name: Default
+  
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
