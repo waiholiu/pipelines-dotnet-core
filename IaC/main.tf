@@ -13,6 +13,10 @@ resource "azurerm_app_service_plan" "example" {
     tier = "Standard"
     size = "S1"
   }
+
+  tags = {
+    environment = "production"
+  }
 }
 
 resource "azurerm_windows_web_app" "example" {
