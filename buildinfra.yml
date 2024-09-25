@@ -18,20 +18,17 @@ steps:
 - task: TerraformInstaller@1
   inputs:
     terraformVersion: 'latest'
-- task: TerraformTaskV4@4
+
+- task: PowerShell@2
   inputs:
-    provider: 'azurerm'
-    command: 'init'
-    backendServiceArm: 'MCAPS-Hybrid-REQ-41734-2022-wailiu(918c97a2-ccbf-4a26-b0fd-8331c5e00f54)'
-    backendAzureRmResourceGroupName: 'tfstate202403'
-    backendAzureRmStorageAccountName: 'tfstate202403'
-    backendAzureRmContainerName: 'tfdemo'
-    backendAzureRmKey: 'terraform.tfstate'
+    targetType: 'inline'
+    script: 'terraform init'
 
 - task: TerraformTaskV4@4
   inputs:
     provider: 'azurerm'
     command: 'apply'
-    environmentServiceNameAzureRM: 'MCAPS-Hybrid-REQ-41734-2022-wailiu(918c97a2-ccbf-4a26-b0fd-8331c5e00f54)'
+    environmentServiceNameAzureRM: 'MIPDG--lod49466407(ef3e1b06-c3be-46c3-95dd-3e20738072e2)'
     
+
     
