@@ -18,5 +18,17 @@ buildinfra.yml - This pipeline deploys the infrastructure to Azure using Terrafo
 
 Inside the pipelines, you'll need to update the service connections to point to your Azure subscription.
 
+For example, under 
+```
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'MIPDG--lod49466407(ef3e1b06-c3be-46c3-95dd-3e20738072e2)'
+        appType: 'webApp'
+        WebAppName: 'pul-yaml-44234366'
+        packageForLinux: '$(System.ArtifactsDirectory)/drop/*.zip'
+```
+
+you'll need to update azureSubscription to be your own service connection
 
 
